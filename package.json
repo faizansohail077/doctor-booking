@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "cd client && yarn install & cd server && yarn install",
     "dev": "yarn client:dev & yarn server:dev",
     "client:dev": "cd client && yarn dev",
     "server:dev": "cd server && yarn dev"

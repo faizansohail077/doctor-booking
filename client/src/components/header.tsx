@@ -2,14 +2,13 @@ import { Link } from "react-router-dom"
 import { Button } from "./ui/button"
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { AlignJustify } from "lucide-react"
 const Header = () => {
   return (
-    <div className="bg-zinc-500 h-14 " >
+    <div className="bg-zinc-500 h-14" >
       <div className="max-w-7xl  mx-auto h-full">
         <div className="flex items-center justify-between h-full w-full">
           <div className="flex items-center pb-2">

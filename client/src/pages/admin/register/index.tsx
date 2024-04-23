@@ -8,7 +8,6 @@ import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-
     FormField,
     FormItem,
     FormLabel,
@@ -30,8 +29,6 @@ import {
 import toast from "react-hot-toast"
 
 setKey(import.meta.env.VITE_GOOGLE_PLACES_API_KEY!);
-
-
 
 const formSchema = z.object({
     fullName: z.string().min(5, {

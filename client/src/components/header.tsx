@@ -6,6 +6,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { AlignJustify } from "lucide-react"
+import { ModeToggle } from "./mode-toggle"
 const Header = () => {
   const navigate = useNavigate()
   return (
@@ -23,9 +24,10 @@ const Header = () => {
             <div className="flex items-center gap-2">
 
               <Button size={"sm"} variant={"outline"}  >Login</Button>
-              <Button onClick={()=>navigate("/admin/register")} size={"sm"}  >Apply As Doctor</Button>
+              <Button onClick={() => navigate("/admin/register")} size={"sm"}  >Apply As Doctor</Button>
 
             </div>
+            <ModeToggle />
           </div>
           <div className="inline sm:hidden mr-2">
 
@@ -56,7 +58,7 @@ const MobileHeader = () => {
           <Link to="/" className="nav-link">About</Link>
           <Link to="/" className="nav-link">Contact Us</Link>
           <Button size={"sm"} variant={"outline"}  >Login</Button>
-          <Button onClick={()=>navigate("/admin/register")} size={"sm"}  >Apply As Doctor</Button>
+          <Button onClick={() => navigate("/admin/register")} size={"sm"}  >Apply As Doctor</Button>
         </div>
       </SheetContent>
     </Sheet>

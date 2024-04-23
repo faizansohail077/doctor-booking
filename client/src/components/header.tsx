@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button } from "./ui/button"
 import {
   Sheet,
@@ -7,6 +7,7 @@ import {
 } from "@/components/ui/sheet"
 import { AlignJustify } from "lucide-react"
 const Header = () => {
+  const navigate = useNavigate()
   return (
     <div className="bg-zinc-500 h-14" >
       <div className="max-w-7xl  mx-auto h-full">
@@ -22,7 +23,7 @@ const Header = () => {
             <div className="flex items-center gap-2">
 
               <Button size={"sm"} variant={"outline"}  >Login</Button>
-              <Button size={"sm"}  >Apply As Doctor</Button>
+              <Button onClick={()=>navigate("/admin/register")} size={"sm"}  >Apply As Doctor</Button>
 
             </div>
           </div>
@@ -39,6 +40,8 @@ const Header = () => {
 export default Header
 
 const MobileHeader = () => {
+  const navigate = useNavigate()
+
   return (
     <Sheet>
       <SheetTrigger><AlignJustify color="white" /></SheetTrigger>
@@ -53,7 +56,7 @@ const MobileHeader = () => {
           <Link to="/" className="nav-link">About</Link>
           <Link to="/" className="nav-link">Contact Us</Link>
           <Button size={"sm"} variant={"outline"}  >Login</Button>
-          <Button size={"sm"}  >Apply As Doctor</Button>
+          <Button onClick={()=>navigate("/admin/register")} size={"sm"}  >Apply As Doctor</Button>
         </div>
       </SheetContent>
     </Sheet>

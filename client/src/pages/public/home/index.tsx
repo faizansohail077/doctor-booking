@@ -1,11 +1,12 @@
+import { Header } from "@/components"
 import { Button } from "@/components/ui/button"
 
 const PublicHome = () => {
   return (
-    <div>PublicHome
-
+    <>
+      <Header />
       <Button>Click me</Button>
-    </div>
+    </>
   )
 }
 

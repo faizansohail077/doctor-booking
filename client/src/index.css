@@ -70,6 +70,9 @@
     * {
       @apply border-border;
     }
+    .nav-link{
+      @apply text-white  transition-all hover:border-b-2
+    }
     body {
       @apply bg-background text-foreground;
     }

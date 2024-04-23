@@ -5,7 +5,7 @@ import { Public } from "./public";
 
 export const Pages = {
     AdminHome: Admin.AdminHome,
-    AdminRegister: Admin.AdminRegister,
+    DoctorRegister: Doctor.DoctorRegister,
     DoctorHome: Doctor.DoctorHome,
     PatientHome: Patient.PatientHome,
     PublicHome: Public.PublicHome,

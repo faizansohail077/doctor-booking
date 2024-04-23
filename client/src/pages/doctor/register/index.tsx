@@ -27,6 +27,7 @@ import {
     fromLatLng,
 } from "react-geocode";
 import toast from "react-hot-toast"
+import { doctorAction } from "@/store/actions"
 
 setKey(import.meta.env.VITE_GOOGLE_PLACES_API_KEY!);
 
@@ -53,7 +54,7 @@ const formSchema = z.object({
     lat: z.number().optional(),
 })
 
-const AdminRegister = () => {
+const DoctorRegister = () => {
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema.required()),
@@ -68,12 +69,26 @@ const AdminRegister = () => {
             lat: 0
         },
     })
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values)
+    async function onSubmit(values: z.infer<typeof formSchema>) {
         if (values.lat === 0 || values.lng === 0) {
             return toast.error("Select Location From Search Bar")
         }
-        toast.success("Form submitted successfully")
+
+        const id = toast.loading("Submitting...")
+        try {
+            const result = await doctorAction.register_doctor(values)
+            toast.dismiss(id)
+            console.log(result)
+            toast.success("Form submitted successfully")
+        } catch (error: any) {
+            toast.dismiss(id)
+            console.log(error, 'error')
+            if (error?.response?.data?.message) {
+                return toast.error(error?.response?.data?.message)
+            } else {
+                toast.error("Something Went Wrong")
+            }
+        }
     }
     const [address, setAddress] = useState("")
 
@@ -253,4 +268,4 @@ const AdminRegister = () => {
     )
 }
 
-export default AdminRegister
+export default DoctorRegister

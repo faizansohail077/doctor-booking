@@ -24,7 +24,7 @@ const Header = () => {
             <div className="flex items-center gap-2">
 
               <Button size={"sm"} variant={"outline"}  >Login</Button>
-              <Button onClick={() => navigate("/admin/register")} size={"sm"}  >Apply As Doctor</Button>
+              <Button onClick={() => navigate("/doctor/register")} size={"sm"}  >Apply As Doctor</Button>
 
             </div>
             <ModeToggle />

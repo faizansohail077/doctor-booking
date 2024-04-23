@@ -22,10 +22,11 @@ export const registerDoctor = async (req: Request, res: Response) => {
         const doctor = await DoctorModel.CreateDoctor.create(value)
         res.send({ message: "Doctor Created", doctor })
     } catch (error: any) {
-        console.log(error, 'error')
+        console.log("Doctor Create",error)
+
         if (error.errorResponse?.code === 11000) {
-            return res.send({ message: "Email Already Exists" }).status(400)
+            return res.status(400).send({ message: "Email Already Exists" })
         }
-        res.send({ message: "Something Went Wrong" }).status(501)
+        res.status(501).send({ message: "Something Went Wrong" })
     }
 }

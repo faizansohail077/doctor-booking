@@ -9,7 +9,7 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path="/" element={<Pages.PublicHome />} />
-          <Route path="/admin/register" element={<Pages.AdminRegister />} />
+          <Route path="/doctor/register" element={<Pages.DoctorRegister />} />
           <Route path="*" element={<Pages.PageNotFound />} />
         </Routes>
       </HashRouter>

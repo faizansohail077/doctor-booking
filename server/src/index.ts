@@ -16,6 +16,10 @@ app.use('/api/admin', Router.AdminRouter)
 app.use('/api/doctor', Router.DoctorRouter)
 app.use('/api/patient', Router.PatientRouter)
 
+app.use("*",(_,res)=>{
+    res.send("404 API Not Found")
+})
+
 mongoose.connect("mongodb://localhost:27017")
     .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
     .catch((error) => console.log(`${error} did not connect`));

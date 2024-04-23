@@ -142,7 +142,7 @@ const AdminRegister = () => {
 
 
                         <div className="grid grid-cols-1 gap-5">
-                            <FormLabel>Search Address</FormLabel>
+
                             <PlacesAutocomplete
                                 onChange={(e) => setAddress(e)}
                                 onSelect={handleSelect}
@@ -150,15 +150,16 @@ const AdminRegister = () => {
                             >
                                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                                     <div>
+                                        <FormLabel>Search Address</FormLabel>
                                         <input
                                             {...getInputProps({
                                                 placeholder: 'Search Places ...',
-                                                className: 'location-search-input w-full flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+                                                className: 'mt-2 location-search-input w-full flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
                                             })}
                                         />
                                         <div className="autocomplete-dropdown-container">
                                             {loading && <div>Loading...</div>}
-                                            {suggestions?.map((suggestion,index) => {
+                                            {suggestions?.map((suggestion, index) => {
                                                 const className = suggestion.active
                                                     ? 'suggestion-item--active mt-3'
                                                     : 'suggestion-item mt-3';
@@ -170,7 +171,7 @@ const AdminRegister = () => {
                                                     <div
                                                         {...getSuggestionItemProps(suggestion, {
                                                             className,
-                                                            key:index,
+                                                            key: index,
                                                             style,
                                                         })}
                                                     >

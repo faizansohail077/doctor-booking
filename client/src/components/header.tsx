@@ -10,7 +10,7 @@ import { ModeToggle } from "./mode-toggle"
 const Header = () => {
   const navigate = useNavigate()
   return (
-    <div className="bg-zinc-500 h-14" >
+    <div className="bg-deepTeal h-14" >
       <div className="max-w-7xl  mx-auto h-full">
         <div className="flex items-center justify-between h-full w-full">
           <div className="flex items-center pb-2">

@@ -1,6 +1,11 @@
+import { Button } from "@/components/ui/button"
+
 const PublicHome = () => {
   return (
-    <div>PublicHome</div>
+    <div>PublicHome
+
+      <Button>Click me</Button>
+    </div>
   )
 }
 

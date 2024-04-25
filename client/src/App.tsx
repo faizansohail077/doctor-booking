@@ -8,10 +8,19 @@ function App() {
       <Toaster />
       <HashRouter>
         <Routes>
+          
+          {/* public */}
           <Route path="/" element={<Pages.PublicHome />} />
           <Route path="/verify" element={<Pages.Verify />} />
           <Route path="/login" element={<Pages.Login />} />
+          <Route path="/forgot-password" element={<Pages.ForgotPassword />} />
+         
+          {/* doctor */}
           <Route path="/doctor/register" element={<Pages.DoctorRegister />} />
+
+          {/* patient */}
+          <Route path="/patient/register" element={<Pages.PatientRegister />} />
+
           <Route path="*" element={<Pages.PageNotFound />} />
         </Routes>
       </HashRouter>

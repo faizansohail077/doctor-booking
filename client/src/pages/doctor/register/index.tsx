@@ -130,11 +130,13 @@ const DoctorRegister = () => {
     };
 
     return (
-        <div>
+        <div >
             <Header />
-            <div className="w-full md:max-w-7xl px-5 md:px-0 md:mx-auto mt-5 flex items-center justify-center">
+            <div className="w-full  md:max-w-7xl px-5 md:px-0 md:mx-auto mt-5 flex items-center justify-center">
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full md:w-[80%] md:shadow-md md:p-5">
+                      <h1 className="text-center font-bold text-xl">Apply As Doctor</h1>
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <FormField
                                 control={form.control}

@@ -17,7 +17,6 @@ import { Input } from "@/components/ui/input"
 
 import toast from "react-hot-toast"
 import { publicAction } from "@/store/actions"
-import { useNavigate } from "react-router-dom"
 
 
 const formSchema = z.object({
@@ -31,8 +30,8 @@ const formSchema = z.object({
 
 })
 
-const Login = () => {
-const navigate = useNavigate()
+const ForgotPassword = () => {
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema.required()),
         defaultValues: {
@@ -68,7 +67,7 @@ const navigate = useNavigate()
             <div className="w-full md:max-w-7xl px-5 md:px-0 md:mx-auto mt-5 flex items-center justify-center">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="mt-10 space-y-8 w-full md:w-1/2 md:shadow-md md:p-3">
-                       <h1 className="text-xl font-bold text-center" >Login</h1>
+                       <h1 className="text-xl font-bold text-center" >Forgot Password</h1>
 
                         <div className="grid grid-cols-1 gap-5">
 
@@ -85,24 +84,9 @@ const navigate = useNavigate()
                                     </FormItem>
                                 )}
                             />
-                            <FormField
-                                control={form.control}
-                                name="password"
-                                render={({ field }) => (
-                                    <FormItem>
-                                        <FormLabel>Password</FormLabel>
-                                        <FormControl>
-                                            <Input placeholder="Enter Password" {...field} />
-                                        </FormControl>
-                                        <FormMessage />
-                                    </FormItem>
-                                )}
-                            />
+                            
                         </div>
-                        <div className="flex items-center justify-between flex-wrap gap-5">
-                            <p onClick={()=>navigate('/forgot-password')} className="text-sm text-blue-500 cursor-pointer">Forgot Password ?</p>
-                            <p onClick={()=>navigate('/patient/register')} className="text-sm text-blue-500 cursor-pointer">Don't Have Account ?</p>
-                        </div>
+                     
                         <Button type="submit">Submit</Button>
                     </form>
 
@@ -113,4 +97,4 @@ const navigate = useNavigate()
     )
 }
 
-export default Login
+export default ForgotPassword

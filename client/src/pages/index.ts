@@ -11,5 +11,7 @@ export const Pages = {
     PublicHome: Public.PublicHome,
     PageNotFound: Public.PageNotFound,
     Verify: Public.Verify,
-    Login: Public.Login
+    Login: Public.Login,
+    ForgotPassword: Public.ForgotPassword,
+    PatientRegister:Patient.PatientRegister
 }

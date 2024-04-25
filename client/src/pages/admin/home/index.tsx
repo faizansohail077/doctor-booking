@@ -1,6 +1,13 @@
+import { AdminComponents } from "../components"
+
 const AdminHome = () => {
   return (
-    <div>AdminHome</div>
+    <AdminComponents.AdminLayout>
+      <div className="">
+
+        AdminHome
+      </div>
+    </AdminComponents.AdminLayout>
   )
 }
 

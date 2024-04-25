@@ -8,5 +8,4 @@ export const Router = {
     PatientRouter,
     DoctorRouter,
     PublicRouter
-
 }

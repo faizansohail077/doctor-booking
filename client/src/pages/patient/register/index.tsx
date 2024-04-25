@@ -15,21 +15,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-import PlacesAutocomplete from 'react-places-autocomplete';
-import {
-    geocodeByAddress,
-    getLatLng,
-} from 'react-places-autocomplete';
-import { useState } from "react"
-
-import {
-    setKey,
-    fromLatLng,
-} from "react-geocode";
 import toast from "react-hot-toast"
-import { doctorAction } from "@/store/actions"
-
-setKey(import.meta.env.VITE_GOOGLE_PLACES_API_KEY!);
+import { patientAction } from "@/store/actions"
 
 const formSchema = z.object({
     fullName: z.string().min(5, {
@@ -62,20 +49,18 @@ const PatientRegister = () => {
         },
     })
     async function onSubmit(values: z.infer<typeof formSchema>) {
-        // const id = toast.loading("Submitting...")
-        console.log(values,'values')
+        const id = toast.loading("Submitting...")
         try {
-            // const result: any = await doctorAction.register_doctor(values)
-            // toast.dismiss(id)
+            const result: any = await patientAction.register_patient(values)
+            toast.dismiss(id)
             // navigate(`/verify`, {
             //     state: {
             //         email: result?.doctor?.email
             //     }
             // })
-            // console.log(result,'result')
-            toast.success("Form submitted successfully")
+            toast.success(result?.message)
         } catch (error: any) {
-            // toast.dismiss(id)
+            toast.dismiss(id)
             console.log(error, 'error')
             if (error?.response?.data?.message) {
                 return toast.error(error?.response?.data?.message)

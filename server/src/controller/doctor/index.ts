@@ -31,7 +31,7 @@ export const registerDoctor = async (req: Request, res: Response) => {
         const doctor = await DoctorModel.CreateDoctor.create(value)
         const token = await sendToken(doctor)
 
-        res.send({ message: "Doctor Created", doctor, token })
+        res.send({ message: "Doctor Created", token })
     } catch (error: any) {
         console.log("Doctor Create", error)
 

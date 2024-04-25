@@ -12,6 +12,11 @@ const registerDoctorSchema: any = new Schema({
         trim: true,
         unique: true
     },
+    password: {
+        type: String,
+        required: true,
+        trim: true,
+    },
     country: {
         type: String,
         required: true,

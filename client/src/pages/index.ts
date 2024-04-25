@@ -9,5 +9,6 @@ export const Pages = {
     DoctorHome: Doctor.DoctorHome,
     PatientHome: Patient.PatientHome,
     PublicHome: Public.PublicHome,
-    PageNotFound: Public.PageNotFound
+    PageNotFound: Public.PageNotFound,
+    Verify: Public.Verify
 }

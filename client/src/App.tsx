@@ -9,6 +9,7 @@ function App() {
       <HashRouter>
         <Routes>
           <Route path="/" element={<Pages.PublicHome />} />
+          <Route path="/verify" element={<Pages.Verify />} />
           <Route path="/doctor/register" element={<Pages.DoctorRegister />} />
           <Route path="*" element={<Pages.PageNotFound />} />
         </Routes>

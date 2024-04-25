@@ -21,6 +21,8 @@ import {
 } from "@/components/ui/input-otp"
 import toast from "react-hot-toast"
 import { Header } from "@/components"
+import { useLocation, useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 const FormSchema = z.object({
     pin: z.string().min(6, {
@@ -29,6 +31,8 @@ const FormSchema = z.object({
 })
 
 function Verify() {
+    const { state } = useLocation()
+    const navigate = useNavigate()
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
         defaultValues: {
@@ -39,8 +43,14 @@ function Verify() {
     function onSubmit(data: z.infer<typeof FormSchema>) {
         // <code className="text-white">{JSON.stringify(data, null, 2)}</code>
         toast.success("You have successfully verified your account.")
-        console.log(data,'data')
+        console.log(data, 'data')
     }
+    useEffect(() => {
+        if (!state) {
+            navigate('/')
+        }
+    }, [])
+
 
     return (
         <>
@@ -67,7 +77,7 @@ function Verify() {
                                         </InputOTP>
                                     </FormControl>
                                     <FormDescription>
-                                        Please enter the one-time password sent to your phone.
+                                        Please enter the one-time password sent to your email <span className="text-gray-600 text-xs" >({state?.email})</span>.
                                     </FormDescription>
                                     <FormMessage />
                                 </FormItem>

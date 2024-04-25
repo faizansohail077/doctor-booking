@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import { ROLE } from '../../enums';
 
 const registerDoctorSchema: any = new Schema({
     fullName: {
@@ -58,6 +59,10 @@ const registerDoctorSchema: any = new Schema({
         type: Number,
         required: true,
         trim: true
+    },
+    role: {
+        type: String,
+        default: ROLE.DOCTOR
     }
 }, { timestamps: true })
 

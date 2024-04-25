@@ -28,7 +28,6 @@ import {
 } from "react-geocode";
 import toast from "react-hot-toast"
 import { doctorAction } from "@/store/actions"
-import { useNavigate } from "react-router-dom"
 
 setKey(import.meta.env.VITE_GOOGLE_PLACES_API_KEY!);
 
@@ -38,6 +37,9 @@ const formSchema = z.object({
     }),
     email: z.string().email({
         message: "Email is required",
+    }),
+    password: z.string().min(5,{
+        message: "Password is required",
     }),
     country: z.string().min(2, {
         message: "Country is required.",
@@ -56,13 +58,13 @@ const formSchema = z.object({
 })
 
 const DoctorRegister = () => {
-    const navigate = useNavigate()
 
     const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema.required()),
+        resolver: zodResolver(formSchema),
         defaultValues: {
             fullName: "",
             email: "",
+            password:"",
             country: "",
             city: "",
             street: "",
@@ -80,12 +82,12 @@ const DoctorRegister = () => {
         try {
             const result: any = await doctorAction.register_doctor(values)
             toast.dismiss(id)
-            navigate(`/verify`, {
-                state: {
-                    email: result?.doctor?.email
-                }
-            })
-            console.log(result)
+            // navigate(`/verify`, {
+            //     state: {
+            //         email: result?.doctor?.email
+            //     }
+            // })
+            console.log(result,'result')
             toast.success("Form submitted successfully")
         } catch (error: any) {
             toast.dismiss(id)
@@ -264,6 +266,24 @@ const DoctorRegister = () => {
                                     </FormItem>
                                 )}
                             />
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+
+                            <FormField
+                                control={form.control}
+                                name="password"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Password</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="Enter Password" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                          
                         </div>
                         <Button type="submit">Submit</Button>
                     </form>

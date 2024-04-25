@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { DoctorModel } from "../../model/doctor"
 import joi from 'joi'
 import bcrypt from 'bcrypt'
-
+import jwt from 'jsonwebtoken'
 
 export const registerDoctor = async (req: Request, res: Response) => {
 
@@ -27,10 +27,11 @@ export const registerDoctor = async (req: Request, res: Response) => {
         // encrypting password
         const hashPassword = await bcrypt.hash(value?.password, saltRounds)
         value.password = hashPassword
-        
-        const doctor = await DoctorModel.CreateDoctor.create(value)
 
-        res.send({ message: "Doctor Created", doctor })
+        const doctor = await DoctorModel.CreateDoctor.create(value)
+        const token = await jwt.sign({ user_id: doctor?._id, isApproved: doctor?.isApproved, isBlocked: doctor?.isBlocked, isProfileCompleted: doctor?.isProfileCompleted ,role:doctor.role}, process.env.JWT_SECRET!, { expiresIn: '1h' })
+
+        res.send({ message: "Doctor Created", doctor,token })
     } catch (error: any) {
         console.log("Doctor Create", error)
 

@@ -87,8 +87,7 @@ const DoctorRegister = () => {
             //         email: result?.doctor?.email
             //     }
             // })
-            console.log(result,'result')
-            toast.success("Form submitted successfully")
+            toast.success(result?.message)
         } catch (error: any) {
             toast.dismiss(id)
             console.log(error, 'error')

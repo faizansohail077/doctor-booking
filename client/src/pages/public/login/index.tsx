@@ -48,8 +48,7 @@ const navigate = useNavigate()
         try {
             const result: any = await publicAction.login(values)
             toast.dismiss(id)
-            console.log(result)
-            toast.success("Welcome to the platform")
+            toast.success(result?.message)
         } catch (error: any) {
             toast.dismiss(id)
             console.log(error, 'error')

@@ -9,3 +9,7 @@ type REGISTER_DOCTOR = {
     lng?: number,
     lat?: number,
 }
+type LOGIN = {
+    email: string,
+    password: string,
+}

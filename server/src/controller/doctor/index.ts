@@ -3,7 +3,7 @@ import { DoctorModel } from "../../model/doctor"
 import joi from 'joi'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
-
+import { sendToken } from '../../lib/helpers'
 export const registerDoctor = async (req: Request, res: Response) => {
 
     const doctorValidation = joi.object({
@@ -29,9 +29,9 @@ export const registerDoctor = async (req: Request, res: Response) => {
         value.password = hashPassword
 
         const doctor = await DoctorModel.CreateDoctor.create(value)
-        const token = await jwt.sign({ user_id: doctor?._id, isApproved: doctor?.isApproved, isBlocked: doctor?.isBlocked, isProfileCompleted: doctor?.isProfileCompleted ,role:doctor.role}, process.env.JWT_SECRET!, { expiresIn: '1h' })
+        const token = await sendToken(doctor)
 
-        res.send({ message: "Doctor Created", doctor,token })
+        res.send({ message: "Doctor Created", doctor, token })
     } catch (error: any) {
         console.log("Doctor Create", error)
 

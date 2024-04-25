@@ -15,6 +15,7 @@ app.use(cors())
 app.use('/api/admin', Router.AdminRouter)
 app.use('/api/doctor', Router.DoctorRouter)
 app.use('/api/patient', Router.PatientRouter)
+app.use('/api/public', Router.PublicRouter)
 
 app.use("*",(_,res)=>{
     res.send("404 API Not Found")

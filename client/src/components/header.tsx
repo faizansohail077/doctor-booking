@@ -57,8 +57,8 @@ const MobileHeader = () => {
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/" className="nav-link">About</Link>
           <Link to="/" className="nav-link">Contact Us</Link>
-          <Button size={"sm"} variant={"outline"}  >Login</Button>
-          <Button onClick={() => navigate("/admin/register")} size={"sm"}  >Apply As Doctor</Button>
+          <Button onClick={() => navigate("/login")} size={"sm"} variant={"outline"}  >Login</Button>
+          <Button onClick={() => navigate("/doctor/register")} size={"sm"}  >Apply As Doctor</Button>
         </div>
       </SheetContent>
     </Sheet>

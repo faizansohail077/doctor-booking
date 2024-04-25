@@ -16,8 +16,7 @@ import {
 import { Input } from "@/components/ui/input"
 
 import toast from "react-hot-toast"
-import { doctorAction } from "@/store/actions"
-import { useNavigate } from "react-router-dom"
+import {  publicAction } from "@/store/actions"
 
 
 const formSchema = z.object({
@@ -46,9 +45,9 @@ const Login = () => {
 
         const id = toast.loading("Submitting...")
         try {
-            // const result: any = await doctorAction.register_doctor(values)
-            // toast.dismiss(id)
-            // console.log(result)
+            const result: any = await publicAction.login(values)
+            toast.dismiss(id)
+            console.log(result)
             toast.success("Welcome to the platform")
         } catch (error: any) {
             toast.dismiss(id)

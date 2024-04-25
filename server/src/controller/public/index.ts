@@ -16,14 +16,14 @@ export const login = async (req: Request, res: Response) => {
             return res.send({ message: "Invalid Fields", error }).status(400)
         }
         // const find user
-        const admin = await DoctorModel.CreateDoctor.findOne({ email: value?.email })
+        const doctor = await DoctorModel.CreateDoctor.findOne({ email: value?.email })
         const patient = await PateintModel.RegisterPatient.findOne({ email: value?.email })
 
-        if (!admin && !patient) {
+        if (!doctor && !patient) {
             return res.status(400).send({ message: "No User Found" })
         }
         // compare password
-        let user = admin || patient
+        let user = doctor || patient
         const matchPassword = await bcrypt.compare(value?.password, user?.password)
         if (!matchPassword) return res.status(400).send({ message: "Invalid Credentials" })
 

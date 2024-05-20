@@ -9,7 +9,7 @@ export const register_doctor = (body: REGISTER_DOCTOR) => {
                 url: REGISTER_DOCTOR,
                 data: body
             })
-            
+            localStorage.setItem("token",data?.token)
             resolve(data)
 
         } catch (error) {

@@ -10,6 +10,8 @@ export const register_patient = (body: REGISTER_PATIENT) => {
                 data: body
             })
 
+            localStorage.setItem("token",data?.token)
+
             resolve(data)
 
         } catch (error) {

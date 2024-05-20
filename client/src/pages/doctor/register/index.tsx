@@ -28,6 +28,7 @@ import {
 } from "react-geocode";
 import toast from "react-hot-toast"
 import { doctorAction } from "@/store/actions"
+import { useNavigate } from "react-router-dom"
 
 setKey(import.meta.env.VITE_GOOGLE_PLACES_API_KEY!);
 
@@ -58,6 +59,7 @@ const formSchema = z.object({
 })
 
 const DoctorRegister = () => {
+    const navigate = useNavigate()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -82,6 +84,8 @@ const DoctorRegister = () => {
         try {
             const result: any = await doctorAction.register_doctor(values)
             toast.dismiss(id)
+            navigate('/doctor/home')
+
             // navigate(`/verify`, {
             //     state: {
             //         email: result?.doctor?.email

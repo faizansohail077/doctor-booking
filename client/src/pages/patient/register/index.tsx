@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input"
 
 import toast from "react-hot-toast"
 import { patientAction } from "@/store/actions"
+import { useNavigate } from "react-router-dom"
 
 const formSchema = z.object({
     fullName: z.string().min(5, {
@@ -25,7 +26,7 @@ const formSchema = z.object({
     email: z.string().email({
         message: "Email is required",
     }),
-    password: z.string().min(5,{
+    password: z.string().min(5, {
         message: "Password is required",
     }),
     country: z.string().min(2, {
@@ -37,13 +38,13 @@ const formSchema = z.object({
 })
 
 const PatientRegister = () => {
-
+    const navigate = useNavigate()
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             fullName: "",
             email: "",
-            password:"",
+            password: "",
             country: "",
             city: "",
         },
@@ -53,6 +54,9 @@ const PatientRegister = () => {
         try {
             const result: any = await patientAction.register_patient(values)
             toast.dismiss(id)
+           
+            navigate('/patient/home')
+
             // navigate(`/verify`, {
             //     state: {
             //         email: result?.doctor?.email
@@ -69,7 +73,7 @@ const PatientRegister = () => {
             }
         }
     }
-   
+
 
     return (
         <div>
@@ -77,7 +81,7 @@ const PatientRegister = () => {
             <div className="w-full md:max-w-7xl px-5 md:px-0 md:mx-auto mt-5 flex items-center justify-center">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full md:w-[80%] md:shadow-md md:p-5">
-                      <h1 className="text-center font-bold text-xl">Patient Register</h1>
+                        <h1 className="text-center font-bold text-xl">Patient Register</h1>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <FormField
                                 control={form.control}
@@ -108,7 +112,7 @@ const PatientRegister = () => {
                         </div>
 
 
-                       
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                             <FormField
@@ -138,7 +142,7 @@ const PatientRegister = () => {
                                 )}
                             />
                         </div>
-                        
+
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
                             <FormField
@@ -154,7 +158,7 @@ const PatientRegister = () => {
                                     </FormItem>
                                 )}
                             />
-                          
+
                         </div>
                         <Button type="submit">Submit</Button>
                     </form>

@@ -7,7 +7,6 @@ import cors from 'cors'
 dotenv.config()
 const PORT = process.env.PORT || 3000
 const CONNECTION_URL = process.env.CONNECTION_URL || "mongodb://localhost:27017"
-
 const app: Express = express()
 app.use(express.json())
 app.use(cors())
@@ -21,6 +20,6 @@ app.use("*",(_,res)=>{
     res.send("404 API Not Found")
 })
 
-mongoose.connect("mongodb://localhost:27017")
+mongoose.connect(CONNECTION_URL)
     .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
     .catch((error) => console.log(`${error} did not connect`));

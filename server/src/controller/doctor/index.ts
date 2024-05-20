@@ -14,8 +14,8 @@ export const registerDoctor = async (req: Request, res: Response) => {
         city: joi.string().required(),
         street: joi.string().required(),
         zip: joi.string().required(),
-        lng: joi.number().required().min(1),
-        lat: joi.number().required().min(1),
+        lng: joi.number().required(),
+        lat: joi.number().required(),
     });
 
     try {

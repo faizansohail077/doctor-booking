@@ -8,6 +8,11 @@ export const getToken = () => {
     return token!;
 }
 
+export const removeToken = () => {
+    localStorage.removeItem('token')!;
+    return;
+}
+
 export const getUser = () => {
     if (getToken()) {
         const user: JwtPayload = jwtDecode(getToken());
@@ -23,4 +28,5 @@ export interface JwtPayload {
     isProfileCompleted: boolean;
     role: "ADMIN" | "DOCTOR" | "PATIENT";
     user_id: string;
+    email: string
 }

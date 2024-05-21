@@ -51,7 +51,7 @@ const Login = () => {
             const result: any = await publicAction.login(values)
             toast.dismiss(id)
             const user = getUser()
-            console.log(user, 'user')
+
             if (user?.role === ROLE["ADMIN"]) {
                 navigate('/admin/home')
             }

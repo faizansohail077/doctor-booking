@@ -6,7 +6,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { AlignJustify } from "lucide-react"
-import { ModeToggle } from "./mode-toggle"
+// import { ModeToggle } from "./mode-toggle"
 const Header = () => {
   const navigate = useNavigate()
   return (
@@ -27,7 +27,7 @@ const Header = () => {
               <Button onClick={() => navigate("/doctor/register")} size={"sm"}  >Apply As Doctor</Button>
 
             </div>
-            <ModeToggle />
+            {/* <ModeToggle /> */}
           </div>
           <div className="inline sm:hidden mr-2">
 

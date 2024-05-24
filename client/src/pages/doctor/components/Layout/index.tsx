@@ -1,21 +1,11 @@
 import { ReactNode, useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { adminRoutes } from './data';
 import './style.css'
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuGroup,
-    DropdownMenuItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import {
-    Avatar,
-} from "@/components/ui/avatar"
 
-import { Menu, LogOut, Settings, User } from 'lucide-react';
-import { getUser, removeToken } from '@/lib/helpers';
+
+import { Menu } from 'lucide-react';
+import { UserAvatar } from '@/components';
 
 type adminRoutes = {
     title: string;
@@ -30,8 +20,6 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
     const [windowSize, setWindowSize] = useState(getWindowSize());
     const [route, setRoutes] = useState<adminRoutes[]>([])
     const location = useLocation()
-    const user = getUser()
-    const navigate = useNavigate()
 
     useEffect(() => {
         setRoutes(adminRoutes)
@@ -65,45 +53,14 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
 
     const showSidebar = () => setSidebar(!sidebar);
 
-    const logout = () => {
-        removeToken()
-        navigate('/')
-    }
 
     return (
         <>
             <div className='navbar shadow-sm'>
                 <Menu cursor={"pointer"} onClick={showSidebar} />
                 <div className="flex items-center gap-5">
-                    <DropdownMenu>
-                        <DropdownMenuTrigger className='cursor-pointer' asChild>
-                            <Avatar className='cursoir-pointer bg-primary text-white dark:text-black flex items-center justify-center text-xl' >
-                                {/* <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" /> */}
-                                <p className='select-none'>{user?.email[0]?.toUpperCase()}</p>
-                            </Avatar>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent className="w-48">
+                    <UserAvatar />
 
-                            <DropdownMenuGroup>
-                                <DropdownMenuItem className='cursor-pointer'>
-                                    <User className="mr-2 h-4 w-4" />
-                                    <span>Profile</span>
-                                </DropdownMenuItem>
-
-                                <DropdownMenuItem className='cursor-pointer'>
-                                    <Settings className="mr-2 h-4 w-4" />
-                                    <span>Settings</span>
-                                </DropdownMenuItem>
-                            </DropdownMenuGroup>
-
-                            <DropdownMenuSeparator />
-
-                            <DropdownMenuItem onClick={() => logout()} className='text-red-600 cursor-pointer hover:!text-red-600' >
-                                <LogOut className="mr-2 h-4 w-4" />
-                                <span>Log out</span>
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
                     {/* <ModeToggle/> */}
                 </div>
             </div>

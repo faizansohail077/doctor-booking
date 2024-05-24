@@ -6,9 +6,11 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { AlignJustify } from "lucide-react"
+
 // import { ModeToggle } from "./mode-toggle"
 const Header = () => {
   const navigate = useNavigate()
+   
   return (
     <div className="bg-deepTeal h-14" >
       <div className="max-w-7xl  mx-auto h-full">
@@ -23,7 +25,7 @@ const Header = () => {
             <Link to="/" className="nav-link">Contact Us</Link>
             <div className="flex items-center gap-2">
 
-              <Button onClick={()=>navigate('/login')} size={"sm"} variant={"outline"}  >Login</Button>
+              <Button onClick={() => navigate('/login')} size={"sm"} variant={"outline"}  >Login</Button>
               <Button onClick={() => navigate("/doctor/register")} size={"sm"}  >Apply As Doctor</Button>
 
             </div>

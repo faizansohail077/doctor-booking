@@ -1,4 +1,4 @@
-import AdminLayout from "./adminLayout";
+import AdminLayout from "./Layout";
 
 export const AdminComponents = {
     AdminLayout

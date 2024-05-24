@@ -1,6 +1,8 @@
+import { DoctorComponents } from "../components"
+
 const DoctorHome = () => {
   return (
-    <div>DoctorHome</div>
+    <DoctorComponents.DoctorLayout>DoctorHome</DoctorComponents.DoctorLayout>
   )
 }
 

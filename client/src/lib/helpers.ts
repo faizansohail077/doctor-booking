@@ -1,4 +1,5 @@
 import { jwtDecode } from 'jwt-decode' // import dependency
+import toast from 'react-hot-toast';
 
 export const getToken = () => {
     let token;
@@ -29,4 +30,14 @@ export interface JwtPayload {
     role: "ADMIN" | "DOCTOR" | "PATIENT";
     user_id: string;
     email: string
+}
+
+export const errorHandler = (id: string, error: any) => {
+    toast.dismiss(id)
+    console.log(error, 'error')
+    if (error?.response?.data?.message) {
+        return toast.error(error?.response?.data?.message)
+    } else {
+        toast.error("Something Went Wrong")
+    }
 }

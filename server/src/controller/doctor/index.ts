@@ -2,8 +2,8 @@ import { Request, Response } from "express"
 import { DoctorModel } from "../../model/doctor"
 import joi from 'joi'
 import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
 import { sendToken } from '../../lib/helpers'
+
 export const registerDoctor = async (req: Request, res: Response) => {
 
     const doctorValidation = joi.object({
@@ -38,6 +38,16 @@ export const registerDoctor = async (req: Request, res: Response) => {
         if (error.errorResponse?.code === 11000) {
             return res.status(400).send({ message: "Email Already Exists" })
         }
+        res.status(501).send({ message: "Something Went Wrong" })
+    }
+}
+
+export const getDoctorDetail = async (req: Request, res: Response) => {
+    try {
+        const doctor = await DoctorModel.CreateDoctor.findById((req as any).user?.user_id).select("-password")
+        res.send({message:"Welcome Doctor", user: doctor})
+    } catch (error: any) {
+        console.log("Doctor Detail", error)
         res.status(501).send({ message: "Something Went Wrong" })
     }
 }

@@ -19,9 +19,8 @@ import { LogOut, Settings, User } from 'lucide-react';
 const UserAvatar = () => {
     const user = getUser()
     const navigate = useNavigate()
-    console.log(user?.role, 'user?.role[2]')
-    const goToProfile = () => {
 
+    const goToProfile = () => {
         switch (user?.role) {
             case "DOCTOR":
                 navigate('/doctor/profile')

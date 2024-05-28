@@ -2,10 +2,13 @@ import { ReactNode, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
 import { doctorRoutes } from './data';
 import './style.css'
+import { jwtDecode } from 'jwt-decode'
 
 
 import { Menu } from 'lucide-react';
 import { UserAvatar } from '@/components';
+import { getToken, removeToken } from '@/lib/helpers';
+import toast from 'react-hot-toast';
 
 type doctorRoutes = {
     title: string;
@@ -24,6 +27,19 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         setRoutes(doctorRoutes)
+    }, [])
+
+    useEffect(() => {
+        if (getToken()) {
+            let expiryCheck: any = jwtDecode(getToken());
+
+            if (Date.now() >= expiryCheck.exp * 1000) {
+                removeToken()
+                toast.error("Session Expired")
+            }
+        }
+        return () => { }
+
     }, [])
 
     useEffect(() => {

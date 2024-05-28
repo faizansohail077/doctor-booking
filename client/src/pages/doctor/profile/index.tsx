@@ -3,7 +3,8 @@ import { DoctorComponents } from "../components"
 import { doctorAction } from "@/store/actions"
 import { errorHandler } from "@/lib/helpers"
 import toast from "react-hot-toast"
-import { AddressForm } from "./components"
+import { AddressForm, Certificates } from "./components"
+import Photo from "./components/Photo"
 
 
 const DoctorProfile = () => {
@@ -45,10 +46,12 @@ const DoctorProfile = () => {
 
         {/* address */}
         {selectedTab === "Address" && <AddressForm addressData={addressData} />}
+        {selectedTab === "Photo" && <Photo />}
 
         {/* email */}
         {/* photo */}
         {/* certificates */}
+        {selectedTab === "Certificates" && <Certificates />}
       </div>
     </DoctorComponents.DoctorLayout>
   )

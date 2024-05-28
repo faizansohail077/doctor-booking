@@ -22,7 +22,9 @@ const DoctorProfile = () => {
       setAddressData(data?.user)
       toast.dismiss(id)
     } catch (error) {
-      return errorHandler(id, error)
+      return errorHandler(error)
+    } finally {
+      toast.dismiss(id)
     }
   }
 

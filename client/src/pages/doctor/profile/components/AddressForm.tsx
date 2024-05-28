@@ -32,6 +32,8 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { errorHandler } from '@/lib/helpers';
+import { doctorAction } from '@/store/actions';
 
 setKey(import.meta.env.VITE_GOOGLE_PLACES_API_KEY!);
 
@@ -90,6 +92,7 @@ const AddressForm = ({ addressData }: { addressData: any }) => {
     }, [addressData])
 
     const [address, setAddress] = useState("")
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
     const handleSelect = (address: string) => {
         geocodeByAddress(address)
@@ -125,19 +128,17 @@ const AddressForm = ({ addressData }: { addressData: any }) => {
         }
 
         const id = toast.loading("Submitting...")
+        setIsSubmitting(true)
         try {
             console.log(values, 'values')
-            // const result: any = await doctorAction.register_doctor(values)
-            // toast.dismiss(id)
-            // toast.success(result?.message)
+            const result: any = await doctorAction.update_doctor_details(values)
+            toast.dismiss(id)
+            toast.success(result?.message)
         } catch (error: any) {
             toast.dismiss(id)
-            console.log(error, 'error')
-            if (error?.response?.data?.message) {
-                return toast.error(error?.response?.data?.message)
-            } else {
-                toast.error("Something Went Wrong")
-            }
+            errorHandler(error)
+        } finally {
+            setIsSubmitting(false)
         }
     }
 
@@ -293,7 +294,7 @@ const AddressForm = ({ addressData }: { addressData: any }) => {
                 </div>
                 <div className="flex items-center justify-end">
 
-                    <Button type="submit">Save</Button>
+                    <Button disabled={isSubmitting} type="submit">Save</Button>
                 </div>
             </form>
 

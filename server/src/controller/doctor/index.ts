@@ -45,9 +45,24 @@ export const registerDoctor = async (req: Request, res: Response) => {
 export const getDoctorDetail = async (req: Request, res: Response) => {
     try {
         const doctor = await DoctorModel.CreateDoctor.findById((req as any).user?.user_id).select("-password")
-        res.send({message:"Welcome Doctor", user: doctor})
+        res.send({ message: "Welcome Doctor", user: doctor })
     } catch (error: any) {
         console.log("Doctor Detail", error)
         res.status(501).send({ message: "Something Went Wrong" })
     }
 }
+
+export const updateDoctorDetail = async (req: Request, res: Response) => {
+
+    try {
+        const doctor = await DoctorModel.CreateDoctor.findById((req as any).user?.user_id).select("-password")
+        if (!doctor) return res.status(404).send({ message: "Doctor Not found" })
+        await DoctorModel.CreateDoctor.findByIdAndUpdate((req as any).user?.user_id, req.body)
+        res.send({ message: "Profile Updated", user: doctor })
+    } catch (error: any) {
+        console.log("Doctor Detail", error)
+        res.status(501).send({ message: "Something Went Wrong" })
+    }
+}
+
+

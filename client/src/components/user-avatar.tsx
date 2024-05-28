@@ -1,4 +1,4 @@
-import { removeToken } from '@/lib/helpers'
+import { getUser, removeToken } from '@/lib/helpers'
 import { useNavigate } from 'react-router-dom'
 
 import {
@@ -20,8 +20,9 @@ import { useSelector } from 'react-redux';
 
 const UserAvatar = () => {
     const navigate = useNavigate()
-    const { user } = useSelector((state: any) => state.authSlice)
-
+    const user = getUser()
+    const userProfile = useSelector((state: any) => state.authSlice)
+    console.log(user, 'user 2')
     const goToProfile = () => {
         switch (user?.role) {
             case "DOCTOR":
@@ -40,7 +41,7 @@ const UserAvatar = () => {
         <DropdownMenu>
             <DropdownMenuTrigger className='cursor-pointer' asChild>
                 <Avatar className='cursoir-pointer bg-primary text-white dark:text-black flex items-center justify-center text-xl' >
-                    {user?.profile_image ? <AvatarImage src={user?.profile_image?.url} alt="@shadcn" /> :
+                    {userProfile?.user?.profile_image ? <AvatarImage src={userProfile?.user?.profile_image?.url} alt="@shadcn" /> :
                         <p className='select-none'>{user?.email[0]?.toUpperCase()}</p>
                     }
                 </Avatar>

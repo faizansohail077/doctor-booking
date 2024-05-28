@@ -1,4 +1,4 @@
-import { getUser, removeToken } from '@/lib/helpers'
+import { removeToken } from '@/lib/helpers'
 import { useNavigate } from 'react-router-dom'
 
 import {
@@ -11,14 +11,17 @@ import {
 } from "@/components/ui/dropdown-menu"
 import {
     Avatar,
+    AvatarImage,
 } from "@/components/ui/avatar"
 
 import { LogOut, Settings, User } from 'lucide-react';
+import { useSelector } from 'react-redux';
 
 
 const UserAvatar = () => {
-    const user = getUser()
     const navigate = useNavigate()
+    const { user } = useSelector((state: any) => state.authSlice)
+    console.log(user, 'user')
 
     const goToProfile = () => {
         switch (user?.role) {
@@ -38,8 +41,9 @@ const UserAvatar = () => {
         <DropdownMenu>
             <DropdownMenuTrigger className='cursor-pointer' asChild>
                 <Avatar className='cursoir-pointer bg-primary text-white dark:text-black flex items-center justify-center text-xl' >
-                    {/* <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" /> */}
-                    <p className='select-none'>{user?.email[0]?.toUpperCase()}</p>
+                    {user?.profile_image ? <AvatarImage src={user?.profile_image?.url} alt="@shadcn" /> :
+                        <p className='select-none'>{user?.email[0]?.toUpperCase()}</p>
+                    }
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-48">

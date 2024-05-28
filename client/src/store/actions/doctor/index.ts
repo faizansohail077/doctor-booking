@@ -50,6 +50,7 @@ export const update_doctor_details = (body: any) => {
                     "Authorization": getToken()
                 }
             })
+
             resolve(data)
         } catch (error) {
             reject(error)

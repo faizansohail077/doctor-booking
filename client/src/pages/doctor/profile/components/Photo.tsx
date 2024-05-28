@@ -2,14 +2,17 @@ import { ImageUploader } from "@/components";
 import { Button } from "@/components/ui/button";
 import { errorHandler } from "@/lib/helpers";
 import { doctorAction } from "@/store/actions";
+import { addUser } from "@/store/slices/auth";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
 const Photo = ({ addressData, setAddressData }: { addressData: any, setAddressData: any }) => {
 
     const [images, setImages] = useState<any>([]);
     const [submitting, setIsSubmitting] = useState(false)
     const maxNumber = 1;
+    const dispatch = useDispatch()
 
     useEffect(() => {
         setImages(addressData?.profile_image ? [addressData?.profile_image] : [])
@@ -24,6 +27,8 @@ const Photo = ({ addressData, setAddressData }: { addressData: any, setAddressDa
             toast.dismiss(id)
             toast.success(result?.message)
             setAddressData(result?.user)
+            dispatch(addUser(result?.user))
+
         } catch (error: any) {
             toast.dismiss(id)
             errorHandler(error)

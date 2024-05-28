@@ -5,12 +5,14 @@ import { errorHandler } from "@/lib/helpers"
 import toast from "react-hot-toast"
 import { AddressForm, Certificates } from "./components"
 import Photo from "./components/Photo"
+import { addUser } from "@/store/slices/auth"
+import { useDispatch } from "react-redux"
 
 
 const DoctorProfile = () => {
   const [addressData, setAddressData] = useState<any>({})
   const [selectedTab, setSelectedTab] = useState("Address")
-
+  const dispatch = useDispatch()
   useEffect(() => {
     getDoctorDetail()
   }, [])
@@ -21,6 +23,7 @@ const DoctorProfile = () => {
       const data: any = await doctorAction.doctor_detail()
       setAddressData(data?.user)
       toast.dismiss(id)
+      dispatch(addUser(data?.user))
     } catch (error) {
       return errorHandler(error)
     } finally {

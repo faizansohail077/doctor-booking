@@ -21,7 +21,6 @@ import { useSelector } from 'react-redux';
 const UserAvatar = () => {
     const navigate = useNavigate()
     const { user } = useSelector((state: any) => state.authSlice)
-    console.log(user, 'user')
 
     const goToProfile = () => {
         switch (user?.role) {

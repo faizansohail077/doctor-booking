@@ -30,8 +30,6 @@ const DoctorProfile = () => {
 
   const tabs = ["Address", "Photo", "Certificates"]
 
-
-
   return (
     <DoctorComponents.DoctorLayout>
       <div className="h-full">
@@ -48,12 +46,12 @@ const DoctorProfile = () => {
 
         {/* address */}
         {selectedTab === "Address" && <AddressForm addressData={addressData} />}
-        {selectedTab === "Photo" && <Photo />}
 
-        {/* email */}
         {/* photo */}
+        {selectedTab === "Photo" && <Photo addressData={addressData} setAddressData={setAddressData} />}
+
         {/* certificates */}
-        {selectedTab === "Certificates" && <Certificates />}
+        {selectedTab === "Certificates" && <Certificates addressData={addressData} setAddressData={setAddressData} />}
       </div>
     </DoctorComponents.DoctorLayout>
   )

@@ -65,10 +65,15 @@ const registerDoctorSchema: any = new Schema({
         default: ROLE.DOCTOR
     },
     profile_image: {
-        type: String
+        url: String,
+        public_id: String
     },
     certificates: {
-        type: [String]
+        type: [
+            {
+                url: String,
+                public_id: String
+            }]
     }
 }, { timestamps: true })
 

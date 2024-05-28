@@ -1,5 +1,5 @@
 import { ReactNode, useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { doctorRoutes } from './data';
 import './style.css'
 import { jwtDecode } from 'jwt-decode'
@@ -18,7 +18,7 @@ type doctorRoutes = {
 }
 
 const SidebarComponent = ({ children }: { children: ReactNode }) => {
-
+    const navigate = useNavigate()
 
     const [sidebar, setSidebar] = useState(true);
     const [windowSize, setWindowSize] = useState(getWindowSize());
@@ -36,6 +36,7 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
             if (Date.now() >= expiryCheck.exp * 1000) {
                 removeToken()
                 toast.error("Session Expired")
+                navigate('/login')
             }
         }
         return () => { }

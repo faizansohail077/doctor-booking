@@ -37,9 +37,6 @@ import { doctorAction } from '@/store/actions';
 
 setKey(import.meta.env.VITE_GOOGLE_PLACES_API_KEY!);
 
-
-
-
 const AddressForm = ({ addressData }: { addressData: any }) => {
     const formSchema = z.object({
         fullName: z.string().min(5, {

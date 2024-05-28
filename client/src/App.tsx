@@ -32,6 +32,12 @@ function App() {
             </PrivateRoute>
 
           } />
+          <Route path='/doctor/patients' element={
+            <PrivateRoute roles={[ROLE.DOCTOR]}>
+              <Pages.DoctorPatients />
+            </PrivateRoute>
+
+          } />
 
           {/* patient */}
           <Route path="/patient/register" element={<Pages.PatientRegister />} />

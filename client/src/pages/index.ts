@@ -12,6 +12,7 @@ export const Pages = {
     DoctorProfile: Doctor.DoctorProfile,
     DoctorRegister: Doctor.DoctorRegister,
     DoctorHome: Doctor.DoctorHome,
+    DoctorPatients:Doctor.DoctorPatients,
     // patient
     PatientHome: Patient.PatientHome,
     PublicHome: Public.PublicHome,

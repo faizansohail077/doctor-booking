@@ -1,16 +1,17 @@
 import { ReactNode, useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom';
-import { adminRoutes } from './data';
+import { doctorRoutes } from './data';
 import './style.css'
 
 
 import { Menu } from 'lucide-react';
 import { UserAvatar } from '@/components';
 
-type adminRoutes = {
+type doctorRoutes = {
     title: string;
     path: string;
     cName: string;
+    icon: JSX.Element
 }
 
 const SidebarComponent = ({ children }: { children: ReactNode }) => {
@@ -18,11 +19,11 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
 
     const [sidebar, setSidebar] = useState(true);
     const [windowSize, setWindowSize] = useState(getWindowSize());
-    const [route, setRoutes] = useState<adminRoutes[]>([])
+    const [route, setRoutes] = useState<doctorRoutes[]>([])
     const location = useLocation()
 
     useEffect(() => {
-        setRoutes(adminRoutes)
+        setRoutes(doctorRoutes)
     }, [])
 
     useEffect(() => {
@@ -73,6 +74,7 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
                             return (
                                 <li key={index} className={item.cName}>
                                     <Link className={`${location.pathname == item?.path ? `bg-deepTeal !text-white ` : "bg-transparent !text-black"} hover:bg-teal/95 hover:!text-white`} to={item?.path} >
+                                        {item?.icon}
                                         <span>{item.title}</span>
                                     </Link>
                                 </li>
@@ -83,7 +85,7 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
             </nav>
             <div
                 className='flex overflow-scroll md:h-[80vh] mb-10 md:mb-0 mt-5 flex-col gap-5 md:gap-10  p-5'
-                style={{ display: windowSize.innerWidth <= 450 && sidebar ? 'none' : undefined, paddingLeft: !sidebar ? '1%' : '210px', paddingRight: !sidebar ? '1%' : undefined }} >
+                style={{ display: windowSize.innerWidth <= 450 && sidebar ? 'none' : undefined, paddingLeft: !sidebar ? '3%' : '230px', paddingRight: !sidebar ? '1%' : undefined }} >
                 {children}
             </div>
         </>

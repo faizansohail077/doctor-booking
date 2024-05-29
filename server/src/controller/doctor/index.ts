@@ -67,8 +67,13 @@ export const updateDoctorDetail = async (req: Request, res: Response) => {
     try {
         const doctor = await DoctorModel.CreateDoctor.findById((req as any).user?.user_id).select("-password")
         if (!doctor) return res.status(404).send({ message: "Doctor Not found" })
+
+        if (doctor.profile_image && doctor.certificates) {
+            await DoctorModel.CreateDoctor.findByIdAndUpdate((req as any).user?.user_id,{ isProfileCompleted: true }, { new: true })
+        }
         const updatedDoctor = await DoctorModel.CreateDoctor.findByIdAndUpdate((req as any).user?.user_id, req.body, { new: true })
-        res.send({ message: "Profile Updated", user: updatedDoctor })
+        const token = await sendToken(doctor)
+        res.send({ message: "Profile Updated", user: updatedDoctor,token })
     } catch (error: any) {
         console.log("Doctor Detail", error)
         res.status(501).send({ message: "Something Went Wrong" })

@@ -7,8 +7,9 @@ import { jwtDecode } from 'jwt-decode'
 
 import { Menu } from 'lucide-react';
 import { UserAvatar } from '@/components';
-import { getToken, removeToken } from '@/lib/helpers';
+import { getToken, getUser, removeToken } from '@/lib/helpers';
 import toast from 'react-hot-toast';
+import Banner from '@/components/Banner';
 
 type doctorRoutes = {
     title: string;
@@ -70,7 +71,7 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
     }
 
     const showSidebar = () => setSidebar(!sidebar);
-
+    const user = getUser()
 
     return (
         <>
@@ -103,6 +104,7 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
             <div
                 className='flex overflow-scroll md:h-[80vh] mb-10 md:mb-0 mt-5 flex-col gap-5 md:gap-10  p-5'
                 style={{ display: windowSize.innerWidth <= 450 && sidebar ? 'none' : undefined, paddingLeft: !sidebar ? '3%' : '230px', paddingRight: !sidebar ? '1%' : undefined }} >
+                {!user?.isProfileCompleted && <Banner />}
                 {children}
             </div>
         </>

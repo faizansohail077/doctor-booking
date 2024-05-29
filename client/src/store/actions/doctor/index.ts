@@ -50,7 +50,8 @@ export const update_doctor_details = (body: any) => {
                     "Authorization": getToken()
                 }
             })
-
+            localStorage.setItem("token",data?.token)
+            console.log(data,'data')
             resolve(data)
         } catch (error) {
             reject(error)
@@ -69,6 +70,7 @@ export const get_all_doctor = () => {
                     "Authorization": getToken(),
                 }
             })
+          
             resolve(data)
 
         } catch (error) {

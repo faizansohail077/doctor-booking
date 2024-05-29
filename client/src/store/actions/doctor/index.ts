@@ -1,5 +1,5 @@
 import { getToken } from '@/lib/helpers'
-import { DOCTOR_DETAIL, REGISTER_DOCTOR, UPDATE_DOCTOR_DETAIL } from '@/store/constants'
+import { DOCTOR_DETAIL, GET_ALL_DOCTOR, REGISTER_DOCTOR, UPDATE_DOCTOR_DETAIL } from '@/store/constants'
 import axios from 'axios'
 
 export const register_doctor = (body: REGISTER_DOCTOR) => {
@@ -57,3 +57,23 @@ export const update_doctor_details = (body: any) => {
         }
     })
 }
+
+export const get_all_doctor = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const { data } = await axios({
+                method: "GET",
+                url: GET_ALL_DOCTOR,
+                headers: {
+                    "content-type": "application/json",
+                    "Authorization": getToken(),
+                }
+            })
+            resolve(data)
+
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+

@@ -11,6 +11,7 @@ type adminRoutes = {
     title: string;
     path: string;
     cName: string;
+    icon: any
 }
 
 const SidebarComponent = ({ children }: { children: ReactNode }) => {
@@ -73,6 +74,7 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
                             return (
                                 <li key={index} className={item.cName}>
                                     <Link className={`${location.pathname == item?.path ? `bg-deepTeal !text-white ` : "bg-transparent !text-black"} hover:bg-teal/95 hover:!text-white`} to={item?.path} >
+                                        {item?.icon}
                                         <span>{item.title}</span>
                                     </Link>
                                 </li>

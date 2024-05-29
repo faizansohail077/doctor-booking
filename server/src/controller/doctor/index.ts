@@ -52,6 +52,16 @@ export const getDoctorDetail = async (req: Request, res: Response) => {
     }
 }
 
+export const getAllDoctor = async (req: Request, res: Response) => {
+    try {
+        const doctor = await DoctorModel.CreateDoctor.find().select("-password")
+        res.send({ message: "All Doctor", user: doctor })
+    } catch (error: any) {
+        console.log("Doctor Detail", error)
+        res.status(501).send({ message: "Something Went Wrong" })
+    }
+}
+
 export const updateDoctorDetail = async (req: Request, res: Response) => {
 
     try {

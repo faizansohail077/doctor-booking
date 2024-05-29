@@ -63,6 +63,11 @@ function App() {
               <Pages.AdminPatients />
             </PrivateRoute>
           } />
+          <Route path='/admin/doctors/:id' element={
+            <PrivateRoute roles={[ROLE.ADMIN]}>
+              <Pages.AdminDoctorDetail />
+            </PrivateRoute>
+          } />
 
           <Route path="*" element={<Pages.PageNotFound />} />
         </Routes>

@@ -73,7 +73,7 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
                         {route.map((item, index) => {
                             return (
                                 <li key={index} className={item.cName}>
-                                    <Link className={`${location.pathname == item?.path ? `bg-deepTeal !text-white ` : "bg-transparent !text-black"} hover:bg-teal/95 hover:!text-white`} to={item?.path} >
+                                    <Link className={`${location.pathname == item?.path || `/${location.pathname.split('/')[1]}/${location.pathname.split('/')[2]}` == item?.path ? `bg-deepTeal !text-white ` : "bg-transparent !text-black"} hover:bg-teal/95 hover:!text-white`} to={item?.path} >
                                         {item?.icon}
                                         <span>{item.title}</span>
                                     </Link>

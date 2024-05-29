@@ -8,11 +8,12 @@ export const Pages = {
     AdminHome: Admin.AdminHome,
     AdminDoctors: Admin.AdminDoctors,
     AdminPatients: Admin.AdminPatients,
+    AdminDoctorDetail: Admin.AdminDoctorDetail,
     // doctor
     DoctorProfile: Doctor.DoctorProfile,
     DoctorRegister: Doctor.DoctorRegister,
     DoctorHome: Doctor.DoctorHome,
-    DoctorPatients:Doctor.DoctorPatients,
+    DoctorPatients: Doctor.DoctorPatients,
     // patient
     PatientHome: Patient.PatientHome,
     PublicHome: Public.PublicHome,

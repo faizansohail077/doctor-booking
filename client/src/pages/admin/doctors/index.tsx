@@ -15,11 +15,12 @@ import { doctorAction } from "@/store/actions"
 import Loader from "@/components/loader"
 import { Switch } from "@/components/ui/switch"
 import { Badge } from "@/components/ui/badge"
+import { useNavigate } from "react-router-dom"
 
 const AdminDoctors = () => {
   const [loader, setLoader] = useState(false)
   const [doctors, setDoctors] = useState([])
-
+  const navigate = useNavigate()
   useEffect(() => {
     getallDoctors()
   }, [])
@@ -38,6 +39,15 @@ const AdminDoctors = () => {
 
     }
   }
+
+  const blockDoctor = async (id: string, value: boolean) => {
+    console.log(id,value)
+    const result = confirm("Are you sure you want to block this doctor?")
+    if (result) {
+
+    }
+  }
+
   return (
     <AdminComponents.AdminLayout>
 
@@ -59,20 +69,20 @@ const AdminDoctors = () => {
                     <TableHead className="text-right">Blocked</TableHead>
                   </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody onClick={()=>navigate(`/admin/doctors/${item?._id}`)} >
                   <TableRow>
                     <TableCell className="font-medium">{item?.fullName}</TableCell>
                     <TableCell>{item?.email}</TableCell>
                     <TableCell>{
                       <Badge variant={`${item?.isProfileCompleted ? "success" : "destructive"}`}>{item?.isProfileCompleted ? "Yes" : "No"}</Badge>
                     }</TableCell>
-                    
+
                     <TableCell>{
                       <Badge variant={`${item?.isApproved ? "success" : "destructive"}`}>{item?.isApproved ? "Yes" : "No"}</Badge>
                     }</TableCell>
 
                     <TableCell className="text-right">{
-                      <Switch  onCheckedChange={(e)=>console.log(e,'e')} />
+                      <Switch onCheckedChange={(e) => blockDoctor(item?._id,e)} />
 
                     }</TableCell>
                   </TableRow>

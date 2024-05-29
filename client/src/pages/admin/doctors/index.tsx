@@ -4,7 +4,6 @@ import { AdminComponents } from "../components"
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -41,7 +40,7 @@ const AdminDoctors = () => {
   }
 
   const blockDoctor = async (id: string, value: boolean) => {
-    console.log(id,value)
+    console.log(id, value)
     const result = confirm("Are you sure you want to block this doctor?")
     if (result) {
 
@@ -56,40 +55,40 @@ const AdminDoctors = () => {
         <Loader />
       </> :
         !doctors?.length ? <div>No doctors found</div> : <>
-          {doctors?.map((item: any, index) => {
-            return (
-              <Table key={index}>
-                <TableCaption>A list of Doctors.</TableCaption>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[100px]">Name</TableHead>
-                    <TableHead>Email</TableHead>
-                    <TableHead>Is Profile Completed</TableHead>
-                    <TableHead >Approved</TableHead>
-                    <TableHead className="text-right">Blocked</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody onClick={()=>navigate(`/admin/doctors/${item?._id}`)} >
-                  <TableRow>
-                    <TableCell className="font-medium">{item?.fullName}</TableCell>
-                    <TableCell>{item?.email}</TableCell>
-                    <TableCell>{
-                      <Badge variant={`${item?.isProfileCompleted ? "success" : "destructive"}`}>{item?.isProfileCompleted ? "Yes" : "No"}</Badge>
-                    }</TableCell>
 
-                    <TableCell>{
-                      <Badge variant={`${item?.isApproved ? "success" : "destructive"}`}>{item?.isApproved ? "Yes" : "No"}</Badge>
-                    }</TableCell>
+          <Table >
+            <TableHeader>
+              <TableRow>
+                <TableHead >Name</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead>Is Profile Completed</TableHead>
+                <TableHead >Approved</TableHead>
+                <TableHead className="text-right">Blocked</TableHead>
+              </TableRow>
+            </TableHeader>
+            {doctors?.map((item: any, index) => {
+              return (<TableBody key={index} onClick={() => navigate(`/admin/doctors/${item?._id}`)} >
+                <TableRow className="cursor-pointer" >
+                  <TableCell className="font-medium">{item?.fullName}</TableCell>
+                  <TableCell>{item?.email}</TableCell>
+                  <TableCell>{
+                    <Badge variant={`${item?.isProfileCompleted ? "success" : "destructive"}`}>{item?.isProfileCompleted ? "Yes" : "No"}</Badge>
+                  }</TableCell>
 
-                    <TableCell className="text-right">{
-                      <Switch onCheckedChange={(e) => blockDoctor(item?._id,e)} />
+                  <TableCell>{
+                    <Badge variant={`${item?.isApproved ? "success" : "destructive"}`}>{item?.isApproved ? "Yes" : "No"}</Badge>
+                  }</TableCell>
 
-                    }</TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            )
-          })}
+                  <TableCell className="text-right">{
+                    <Switch onCheckedChange={(e) => blockDoctor(item?._id, e)} />
+
+                  }</TableCell>
+                </TableRow>
+              </TableBody>
+              )
+            })}
+          </Table>
+
         </>
 
       }

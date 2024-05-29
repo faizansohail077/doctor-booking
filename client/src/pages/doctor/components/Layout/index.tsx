@@ -101,10 +101,13 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
                     </div>
                 </ul>
             </nav>
+
+          
             <div
                 className='flex overflow-scroll md:h-[80vh] mb-10 md:mb-0 mt-5 flex-col gap-5 md:gap-10  p-5'
                 style={{ display: windowSize.innerWidth <= 450 && sidebar ? 'none' : undefined, paddingLeft: !sidebar ? '3%' : '230px', paddingRight: !sidebar ? '1%' : undefined }} >
-                {!user?.isProfileCompleted && <Banner />}
+                {!user?.isProfileCompleted && <Banner text='Complete Profile in order to be Approved' varient={"error"} />}
+                {user?.isProfileCompleted && !user?.isApproved && <Banner text='Admin will approve your profile' varient={"success"} />}
                 {children}
             </div>
         </>

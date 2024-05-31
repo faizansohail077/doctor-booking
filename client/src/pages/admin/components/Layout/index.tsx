@@ -11,7 +11,7 @@ type adminRoutes = {
     title: string;
     path: string;
     cName: string;
-    icon: any
+    icon: JSX.Element
 }
 
 const SidebarComponent = ({ children }: { children: ReactNode }) => {

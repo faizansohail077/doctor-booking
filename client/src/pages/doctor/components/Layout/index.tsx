@@ -32,7 +32,7 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         if (getToken()) {
-            let expiryCheck: any = jwtDecode(getToken());
+            const expiryCheck: any = jwtDecode(getToken());
 
             if (Date.now() >= expiryCheck.exp * 1000) {
                 removeToken()

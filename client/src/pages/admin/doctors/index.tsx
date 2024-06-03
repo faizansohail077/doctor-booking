@@ -10,11 +10,12 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { errorHandler } from "@/lib/helpers"
-import { doctorAction } from "@/store/actions"
+import { adminAction, doctorAction } from "@/store/actions"
 import Loader from "@/components/loader"
 import { Switch } from "@/components/ui/switch"
 import { Badge } from "@/components/ui/badge"
 import { useNavigate } from "react-router-dom"
+import toast from "react-hot-toast"
 
 const AdminDoctors = () => {
   const [loader, setLoader] = useState(false)
@@ -39,13 +40,24 @@ const AdminDoctors = () => {
     }
   }
 
-  const blockDoctor = async (id: string, value: boolean) => {
+  const blockDoctor = async (e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: string, value: boolean) => {
     console.log(id, value)
-    const result = confirm("Are you sure you want to block this doctor?")
+    e.stopPropagation()
+    const result = confirm(`Are you sure you want to ${value ? "unblock" : "block"} this doctor?`)
     if (result) {
-
+      try {
+        setLoader(true)
+        await adminAction.update_doctor_details(id!, { isBlocked: !value })
+        toast.success(`Doctor ${value ? "Unblocked" : "Blocked"}`)
+        window.location.reload()
+      } catch (error) {
+        errorHandler(error)
+      } finally {
+        setLoader(false)
+      }
     }
   }
+
 
   return (
     <AdminComponents.AdminLayout>
@@ -80,7 +92,7 @@ const AdminDoctors = () => {
                   }</TableCell>
 
                   <TableCell className="text-right">{
-                    <Switch onCheckedChange={(e) => blockDoctor(item?._id, e)} />
+                    <Switch checked={item?.isBlocked} onClick={(e) => blockDoctor(e, item?._id, item?.isBlocked)} />
 
                   }</TableCell>
                 </TableRow>

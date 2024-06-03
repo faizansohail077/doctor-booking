@@ -1,11 +1,14 @@
 import { ReactNode, useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { adminRoutes } from './data';
 import './style.css'
 
 
 import { Menu } from 'lucide-react';
 import { UserAvatar } from '@/components';
+import { getToken, removeToken } from '@/lib/helpers';
+import toast from 'react-hot-toast';
+import { jwtDecode } from 'jwt-decode';
 
 type adminRoutes = {
     title: string;
@@ -16,7 +19,7 @@ type adminRoutes = {
 
 const SidebarComponent = ({ children }: { children: ReactNode }) => {
 
-
+const navigate = useNavigate()
     const [sidebar, setSidebar] = useState(true);
     const [windowSize, setWindowSize] = useState(getWindowSize());
     const [route, setRoutes] = useState<adminRoutes[]>([])
@@ -45,6 +48,20 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
         }
 
     }, [windowSize.innerWidth])
+
+    useEffect(() => {
+        if (getToken()) {
+            const expiryCheck: any = jwtDecode(getToken());
+
+            if (Date.now() >= expiryCheck.exp * 1000) {
+                removeToken()
+                toast.error("Session Expired")
+                navigate('/login')
+            }
+        }
+        return () => { }
+
+    }, [])
 
 
     function getWindowSize() {

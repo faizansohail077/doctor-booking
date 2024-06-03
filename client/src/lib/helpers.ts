@@ -32,7 +32,8 @@ export interface JwtPayload {
     email: string
 }
 
-export const errorHandler = ( error: any) => {
+export const errorHandler = (error: any) => {
+    console.log(error,'error 2')
     if (error?.response?.data?.message) {
         return toast.error(error?.response?.data?.message)
     } else {

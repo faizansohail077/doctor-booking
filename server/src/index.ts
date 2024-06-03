@@ -17,7 +17,7 @@ app.use('/api/patient', Router.PatientRouter)
 app.use('/api/public', Router.PublicRouter)
 
 app.use("*",(_,res)=>{
-    res.send("404 API Not Found")
+    res.status(404).send({ message: "404 API Not Found" })
 })
 
 mongoose.connect(CONNECTION_URL)

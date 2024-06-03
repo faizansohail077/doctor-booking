@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import axios from 'axios';
 
 
-const ImageUploader = ({ showDeleteAll = true, images, setImages, maxNumber }: { showDeleteAll?: boolean, images: any, setImages: any, maxNumber: number }) => {
+const ImageUploader = ({showUploader = true, showDeleteAll = true, images, setImages, maxNumber }: {showUploader?:boolean, showDeleteAll?: boolean, images: any, setImages: any, maxNumber: number }) => {
     console.log(showDeleteAll)
 
     const onChange = async (imageList: any) => {
@@ -80,7 +80,7 @@ const ImageUploader = ({ showDeleteAll = true, images, setImages, maxNumber }: {
                 }) => (
                     // write your building UI
                     <div className="-wrapper">
-                        <button
+                       {showUploader && <button
                             className='flex flex-col items-center justify-center h-[150px] rounded-md border border-dashed border-deepTeal w-full'
                             style={isDragging ? { color: 'red' } : undefined}
                             onClick={onImageUpload}
@@ -88,7 +88,7 @@ const ImageUploader = ({ showDeleteAll = true, images, setImages, maxNumber }: {
                         >
                             Click or Drop here
                             <FaCloudUploadAlt className='text-deepTeal' size={30} />
-                        </button>
+                        </button>}
                         &nbsp;
                         {/* {showDeleteAll && images?.length > 0 && <button onClick={onImageRemoveAll} className='flex text-red-600 text-sm items-center gap-2'>
                             <FaTrash size={20} />

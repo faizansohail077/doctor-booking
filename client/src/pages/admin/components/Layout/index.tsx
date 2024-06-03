@@ -85,7 +85,7 @@ const SidebarComponent = ({ children }: { children: ReactNode }) => {
             </nav>
             <div
                 className='flex overflow-scroll md:h-[80vh] mb-10 md:mb-0 mt-5 flex-col gap-5 md:gap-10  p-5'
-                style={{ display: windowSize.innerWidth <= 450 && sidebar ? 'none' : undefined, paddingLeft: !sidebar ? '1%' : '210px', paddingRight: !sidebar ? '1%' : undefined }} >
+                style={{ display: windowSize.innerWidth <= 450 && sidebar ? 'none' : undefined, paddingLeft: !sidebar ? '1%' : '230px', paddingRight: !sidebar ? '1%' : undefined }} >
                 {children}
             </div>
         </>

@@ -27,6 +27,11 @@ export const registerDoctor = async (req: Request, res: Response) => {
         // encrypting password
         const hashPassword = await bcrypt.hash(value?.password, saltRounds)
         value.password = hashPassword
+        
+        value.location = {
+            type: "Point",
+            coordinates: [value.lng, value.lat]
+        }
 
         const doctor = await DoctorModel.CreateDoctor.create(value)
         const token = await sendToken(doctor)

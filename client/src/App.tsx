@@ -16,6 +16,7 @@ function App() {
           <Route path="/verify" element={<Pages.Verify />} />
           <Route path="/login" element={<Pages.Login />} />
           <Route path="/forgot-password" element={<Pages.ForgotPassword />} />
+          <Route path="/find-doctors" element={<Pages.FindDoctors />} />
 
           {/* doctor */}
           <Route path="/doctor/register" element={<Pages.DoctorRegister />} />

@@ -1,8 +1,9 @@
 import { getToken } from '@/lib/helpers'
 import { DOCTOR_DETAIL, GET_ALL_DOCTOR, REGISTER_DOCTOR, UPDATE_DOCTOR_DETAIL } from '@/store/constants'
+import { TREGISTER_DOCTOR } from '@/types'
 import axios from 'axios'
 
-export const register_doctor = (body: REGISTER_DOCTOR) => {
+export const register_doctor = (body: TREGISTER_DOCTOR) => {
     return new Promise(async (resolve, reject) => {
         try {
             const { data } = await axios({

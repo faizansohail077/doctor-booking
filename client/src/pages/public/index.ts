@@ -1,4 +1,5 @@
 import PageNotFound from "./404";
+import FindDoctors from "./findDoctors";
 import ForgotPassword from "./forgotPassword";
 import PublicHome from "./home";
 import Login from "./login";
@@ -9,5 +10,6 @@ export const Public = {
     PageNotFound,
     Verify,
     Login,
-    ForgotPassword
+    ForgotPassword,
+    FindDoctors
 }

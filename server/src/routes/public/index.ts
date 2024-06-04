@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { login } from '../../controller/public'
+import { login, searchDoctorByLocation } from '../../controller/public'
 
 const router = Router()
 
@@ -8,5 +8,6 @@ router.get("/", (req, res) => {
 })
 
 router.post("/login", login)
+router.post("/doctor-search", searchDoctorByLocation)
 
 export default router 

@@ -15,3 +15,4 @@ export const ADMIN_UPDATE_DOCTOR_DETAIL = `${BASE_URL}/admin/doctor-update`
 
 // public
 export const LOGIN = `${BASE_URL}/public/login`
+export const SEARCH_DOCTOR = `${BASE_URL}/public/doctor-search`

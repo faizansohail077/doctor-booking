@@ -1,4 +1,4 @@
-type REGISTER_DOCTOR = {
+export type TREGISTER_DOCTOR = {
     fullName: string,
     email: string,
     password: string,
@@ -9,14 +9,18 @@ type REGISTER_DOCTOR = {
     lng?: number,
     lat?: number,
 }
-type REGISTER_PATIENT = {
+export type TREGISTER_PATIENT = {
     fullName: string,
     email: string,
     password: string,
     country: string,
     city: string,
 }
-type LOGIN = {
+export type TLOGIN = {
     email: string,
     password: string,
+}
+export type TLOCATION = {
+    lng: number | null,
+    lat: number | null
 }

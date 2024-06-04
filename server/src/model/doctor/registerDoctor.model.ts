@@ -60,10 +60,25 @@ const registerDoctorSchema: any = new Schema({
         required: true,
         trim: true
     },
+    
+    location: {
+        type: {
+            type: String,
+            enum: ['Point'], // 'location.type' must be 'Point'
+            required: true
+        },
+        coordinates: {
+            type: [Number],
+            required: true
+        }
+    },
+    
+
     role: {
         type: String,
         default: ROLE.DOCTOR
     },
+   
     profile_image: {
         url: String,
         public_id: String
@@ -76,6 +91,7 @@ const registerDoctorSchema: any = new Schema({
             }]
     }
 }, { timestamps: true })
+registerDoctorSchema.index({location: "2dsphere"});
 
 var CreateDoctorSchema = mongoose.model('Doctors', registerDoctorSchema);
 

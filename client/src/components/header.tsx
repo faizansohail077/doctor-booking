@@ -23,6 +23,7 @@ const Header = () => {
             <Link to="/" className="nav-link">Home</Link>
             <Link to="/" className="nav-link">About</Link>
             <Link to="/" className="nav-link">Contact Us</Link>
+            <Link to="/find-doctors" className="nav-link">Doctors</Link>
             <div className="flex items-center gap-2">
 
               <Button onClick={() => navigate('/login')} size={"sm"} variant={"outline"}  >Login</Button>

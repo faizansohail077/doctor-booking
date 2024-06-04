@@ -22,5 +22,6 @@ export const Pages = {
     Verify: Public.Verify,
     Login: Public.Login,
     ForgotPassword: Public.ForgotPassword,
-    PatientRegister: Patient.PatientRegister
+    PatientRegister: Patient.PatientRegister,
+    FindDoctors: Public.FindDoctors,
 }

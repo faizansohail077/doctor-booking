@@ -13,7 +13,7 @@ const useLocation = () => {
         }
     }, [])
 
-    function success(position) {
+    function success(position:any) {
         const lat = position.coords.latitude;
         const lng = position.coords.longitude;
         setLocation({ lat, lng });

@@ -101,7 +101,7 @@ const FindDoctors = () => {
         toast.error("Unable to retrieve your location")
     }
 
-    const getDoctors = async (data) => {
+    const getDoctors = async (data:any) => {
         try {
             setLoader(true)
 
@@ -173,10 +173,10 @@ const FindDoctors = () => {
                                     position={center}
 
                                 />
-                                {doctors?.map((mark, index) => (
+                                {doctors?.map((mark:any, index) => (
                                     <Marker
                                         key={index}
-                                        position={{ lat: mark.lat, lng: mark.lng }}
+                                        position={{ lat: mark?.lat, lng: mark?.lng }}
 
                                     />
                                 ))}

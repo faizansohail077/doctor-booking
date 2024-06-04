@@ -14,7 +14,7 @@ const DoctorCard = ({ data, location,setSelectedDoctor }: any) => {
         return distance;
     }
 
-    function deg2rad(deg) {
+    function deg2rad(deg:any) {
         return deg * (Math.PI / 180);
     }
 
